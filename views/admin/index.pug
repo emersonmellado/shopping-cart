@@ -1,6 +1,7 @@
-extend ./template.pug
+extend ../template.pug
 
 block content
+  a.btn.btn-primary(href='/admin/create') Create
   .row
     .card-group
       each product in products

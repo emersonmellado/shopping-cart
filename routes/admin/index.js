@@ -27,7 +27,7 @@ const admin = (req, res) => {
         }
     ]
 
-    res.render('admin', { products })
+    res.render('admin/index', { products })
 }
 
 module.exports = admin;
