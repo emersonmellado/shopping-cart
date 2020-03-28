@@ -14,4 +14,4 @@ block content
               p.card-text Price: $#{product.price}
               p.text-muted Rating: #{product.rating}
               a.btn.btn-info(href='/admin/update') Update
-              a.btn.btn-danger(href='/admin/delete') Delete
+              a.btn.btn-danger(href="/admin/delete/" + product.id) Delete
