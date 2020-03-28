@@ -1,0 +1,16 @@
+extend ./template.pug
+
+block content
+  .row
+    .card-group
+      each product in products
+        .col
+          .card(style='width: 18rem;')
+            img.card-img-top(src=product.image alt=product.name)
+            .card-body
+              h5.card-title=product.name
+              p.card-text=product.description
+              p.card-text Price: $#{product.price}
+              p.text-muted Rating: #{product.rating}
+              a.btn.btn-info(href='#') Update
+              a.btn.btn-danger(href='#') Delete
