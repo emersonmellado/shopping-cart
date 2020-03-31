@@ -2,7 +2,8 @@ extend ../template.pug
 
 block content
     p This is a form that you can use to Update an existing product
-    form(action="/admin/update/" + product.id method="post")
+    form(action="/admin/update" method="post")
+        input#inputId(type='hidden' name="id" value=product.id)
         .form-group.row
             label.col-sm-2.col-form-label(for='inputName') Name
             .col-sm-10
