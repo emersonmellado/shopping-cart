@@ -1,5 +1,6 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+const mongoose = require('mongoose');
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -8,6 +9,10 @@ app.set('view engine', 'pug')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+//Database connection
+let uri = "mongodb://shoppingcart:shoppingcart1234@cluster0-shard-00-00-tuwa5.mongodb.net:27017,cluster0-shard-00-01-tuwa5.mongodb.net:27017,cluster0-shard-00-02-tuwa5.mongodb.net:27017/shoppingcart?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Modules
 const home = require('./routes/home')
