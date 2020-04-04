@@ -2,7 +2,7 @@ extend ../template.pug
 
 block content
     p This is a form that you can use to create a new product
-    form(action="/admin/create" method="post")
+    form.needs-validation(action="/admin/create" method="post" novalidate)
         .form-group.row
             label.col-sm-2.col-form-label(for='inputName') Name
             .col-sm-10
@@ -14,13 +14,34 @@ block content
         .form-group.row
             label.col-sm-2.col-form-label(for='inputPrice') Price
             .col-sm-10
-                input#inputPrice.form-control(type='text' placeholder='Price' name="price")
+                input#inputPrice.form-control(type='number' placeholder='Price' name="price" required)
+                .invalid-feedback
+                    | Please provide a price.
         .form-group.row
             label.col-sm-2.col-form-label(for='inputRating') Rating
             .col-sm-10
-                input#inputRating.form-control(type='text' placeholder='Rating' name="rating")
+                input#inputRating.form-control(type='text' maxlength="1" placeholder='Rating' name="rating")
         .form-group.row
             label.col-sm-2.col-form-label(for='inputImage') Image
             .col-sm-10
                 input#inputImage.form-control(type='text' placeholder='Image' name="image")
         button.btn.btn-primary(href='/admin/create') Create
+
+    script.
+        (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // - Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // - Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+        })();
