@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 var bodyParser = require('body-parser')
 const mongoose = require('mongoose');
@@ -11,7 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 //Database connection
-let uri = "mongodb://shoppingcart:shoppingcart1234@cluster0-shard-00-00-tuwa5.mongodb.net:27017,cluster0-shard-00-01-tuwa5.mongodb.net:27017,cluster0-shard-00-02-tuwa5.mongodb.net:27017/shoppingcart?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+let uri = process.env.MONGODB_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Modules
